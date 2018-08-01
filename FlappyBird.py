@@ -20,7 +20,7 @@ while not game_exit:
     
     distance += 2
     # Moving Background
-    rect = rect.move((-distance, 0))
+    rect[0] = -distance
     gameDisplay.blit(background, (rect[0] % DISPLAY_WIDTH, rect[1]))
     gameDisplay.blit(background, (rect[0] % DISPLAY_WIDTH - DISPLAY_WIDTH, rect[1]))
     
