@@ -44,13 +44,14 @@ def run():
 
         # Pipe logic.
         if elapsed_time % (FPS*3) == 0:
-            pipes.append(Pipe(gameDisplay, DISPLAY_HEIGHT, DISPLAY_WIDTH, distance * 3))
+            pipes.insert(0, Pipe(gameDisplay, DISPLAY_HEIGHT, DISPLAY_WIDTH, 3))
         for pipe in pipes:
             pipe.move()
             if pipe.x_pos < -pipe.width:
                 del pipe
-        for i in pipes:
-            print i
+                del pipes[-1]
+
+
         # Frame by frame updating.                                                  
         pygame.display.update()                                                     
         clock.tick(FPS)
