@@ -2,8 +2,9 @@ import sys, pygame
 pygame.init()
 
 size = width, height = 1300, 500
-speed = [0, 0]
+speed = 0
 black = 0, 0, 0
+time = 0
 
 ### physics
 gravity = 9.8
@@ -20,11 +21,11 @@ while 1:
         if event.type == pygame.QUIT: sys.exit()
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
-                speed[1] += (currentVerticalSpeed * gravity)
+                time = 0
                 
                 
     #reverses the directions when hitting a border
-    ballrect = ballrect.move(speed)
+    ballrect = ballrect.move([0, speed])
 ##    if ballrect.left < 0 or ballrect.right > width:
 ##        speed[0] = -speed[0]
     if ballrect.top < 0 or ballrect.bottom > height:
@@ -33,3 +34,4 @@ while 1:
     screen.fill(black)
     screen.blit(ball, ballrect)
     pygame.display.flip()
+    time += 1
