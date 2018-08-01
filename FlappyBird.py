@@ -1,6 +1,6 @@
-import pygame                                                                   
+import pygame                                                           
 from Bird import Bird                                                           
-                                                                                
+from Pipe import Pipe                                                                              
 def run():
     pygame.init()                                                                   
     ball = pygame.image.load("res/ball.bmp") # This loads the player into existance.
@@ -14,10 +14,12 @@ def run():
     rect = background.get_rect()                                                    
                                                                                     
     clock = pygame.time.Clock()                                                     
-    FPS = 50 # Frames per second.                                                   
-                                                                                    
+    FPS = 50 # Frames per second.
+    
+    pipes = []
+    elapsed_time = 0                                                                
     player = Bird(DISPLAY_HEIGHT, ball.get_rect()[3]) 
-    distance = 0                                                                    
+    distance = 0                                                               
     # Main loop:                                                                    
     game_exit = False                                                               
     while not game_exit:                                                            
@@ -30,7 +32,7 @@ def run():
                     player.jump()                                                   
                                                                                     
         # Moving Background.                                                        
-        distance += 2                                                               
+        distance += 1           
         rect[0] = -distance                                                         
         gameDisplay.blit(background, (rect[0] % DISPLAY_WIDTH, rect[1]))            
         gameDisplay.blit(background, (rect[0] % DISPLAY_WIDTH - DISPLAY_WIDTH, rect[1]))
@@ -39,11 +41,20 @@ def run():
         player.fall()                                                       
         player.time += 1                                                            
         gameDisplay.blit(ball, (50, player.position))                               
-                                                                                    
+
+        # Pipe logic.
+        if elapsed_time % (FPS*3) == 0:
+            pipes.append(Pipe(gameDisplay, DISPLAY_HEIGHT, DISPLAY_WIDTH, distance * 3))
+        for pipe in pipes:
+            pipe.move()
+            if pipe.x_pos < -pipe.width:
+                del pipe
+        for i in pipes:
+            print i
         # Frame by frame updating.                                                  
         pygame.display.update()                                                     
-        clock.tick(40)                                                              
-                                                                                    
+        clock.tick(FPS)
+        elapsed_time += 1
                                                                                     
     quit()
 
