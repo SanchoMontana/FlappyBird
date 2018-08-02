@@ -9,7 +9,7 @@ blue = (100, 0, 200)
 # Initialization
 pygame.init()                                                                   
 background = pygame.image.load("res/forest.jpg")  # Loading the background.
-ball = pygame.image.load("res/smallbird.bmp")  # This loads the player.
+ball = pygame.image.load("res/bird.png")  # This loads the player.
 pygame.mouse.set_visible(False) 
 DISPLAY_WIDTH = 1200
 DISPLAY_HEIGHT = 900
