@@ -1,6 +1,6 @@
-import pygame                                                           
-from Bird import Bird                                                           
-from Pipe import Pipe                                                                              
+import pygame                                                          
+from Bird import Bird                                                         
+from Pipe import Pipe                                                                  
 # Common pipe colors
 red = (200, 0, 0)
 green = (0, 200, 0)
@@ -9,7 +9,7 @@ blue = (100, 0, 200)
 # Initialization
 pygame.init()                                                                   
 background = pygame.image.load("res/forest.jpg")  # Loading the background.
-ball = pygame.image.load("res/ball.bmp")  # This loads the player.
+ball = pygame.image.load("res/smallbird.bmp")  # This loads the player.
 pygame.mouse.set_visible(False) 
 DISPLAY_WIDTH = 1200
 DISPLAY_HEIGHT = 900
@@ -18,11 +18,13 @@ background = pygame.transform.scale(background, (DISPLAY_WIDTH, DISPLAY_HEIGHT))
 rect = background.get_rect()
 
 clock = pygame.time.Clock()
-FPS = 30 # Frames per second.
+FPS = 30   # This sould be kept at 30 to match with max FPS on most computers.
+            # Doing this should lessen the effects of screen tearing.
 
 pipes = []
 elapsed_time = 0
-player = Bird(DISPLAY_HEIGHT, ball.get_rect()[3])
+prev_click = 0
+player = Bird(DISPLAY_HEIGHT, ball.get_rect()[3])  # , prev_click)
 distance = 0
 # Main loop:
 game_exit = False
@@ -36,28 +38,30 @@ while not game_exit:
                 player.jump()
 
     # Moving Background.
-    distance += 2
+    distance += 1
     rect[0] = -distance
     gameDisplay.blit(background, (rect[0] % DISPLAY_WIDTH, rect[1]))
     gameDisplay.blit(background, (rect[0] % DISPLAY_WIDTH - DISPLAY_WIDTH, rect[1]))
 
-    # Moving the player.
-    player.fall()
-    player.time += 1
-    gameDisplay.blit(ball, (50, player.position))
-
     # Pipe logic.
-    if elapsed_time % (FPS*3) == 0:
-        pipes.insert(0, Pipe(gameDisplay, DISPLAY_HEIGHT, DISPLAY_WIDTH, 4, (20, 130, 200)))
+    if elapsed_time % (FPS * 2) == 0:
+        pipes.insert(0, Pipe(gameDisplay, DISPLAY_HEIGHT, DISPLAY_WIDTH, 4, green))
     for pipe in pipes:
         pipe.move()
         if pipe.x_pos < -pipe.width:
             del pipe
             del pipes[-1]
 
+    # Moving the player.
+    player.fall()
+    player.prev_click = player.time
+    player.time += 1
+    gameDisplay.blit(ball, (50, player.position))
+
     # Frame by frame updating.
     pygame.display.update()
     clock.tick(FPS)
+
     elapsed_time += 1
 
 quit()
