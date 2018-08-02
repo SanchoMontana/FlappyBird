@@ -1,19 +1,7 @@
 import random
 import pygame
 class Pipe:
-<<<<<<< HEAD
-    def __init__(self, DISPLAY_HEIGHT, DISPLAY_WIDTH, speed):
-        pipe_lip = int(DISPLAY_HEIGHT / 10)
-        pipe_gap = int(DISPLAY_HEIGHT / 3)
-        self.pipe_height = random.randint(pipe_lip, DISPLAY_HEIGHT - pipe_lip - pipe_gap)
-        self.pipe_width = DISPLAY_WIDTH / 10
-        self.x_pos = DISPLAY_WIDTH
-        self.speed = speed * 2
 
-    def move(self):
-        self.x_pos -= self.speed
-
-=======
     def __init__(self, gameDisplay,  DISPLAY_HEIGHT, DISPLAY_WIDTH, speed, color = [0, 200, 0]):
         self.gameDisplay = gameDisplay
         self.height = random.randint(int(DISPLAY_HEIGHT / 10), int(DISPLAY_HEIGHT / 10 * 7))
@@ -50,5 +38,5 @@ class Pipe:
         pygame.draw.rect(self.gameDisplay, self.glare, (self.x_pos - self.width / 6 + 10, self.DISPLAY_HEIGHT-self.height, 60, 65))
         pygame.draw.rect(self.gameDisplay, self.shadow, (self.x_pos - self.width / 6 + self.width * 4 / 3 - 30 , self.DISPLAY_HEIGHT-self.height, 30, 65))
         pygame.draw.rect(self.gameDisplay, self.outline, (self.x_pos - self.width / 6, self.DISPLAY_HEIGHT-self.height, self.width * 4 / 3, 65), 2)
->>>>>>> 5658a707f345a6630f3c360707fea14fbd4dfdbd
+
     
