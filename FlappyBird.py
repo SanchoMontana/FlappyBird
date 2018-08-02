@@ -1,29 +1,30 @@
-import pygame, math                                                          
-from Bird import Bird                                                         
-from Pipe import Pipe                                                                  
+import pygame
+import math
+import time
+from Bird import Bird
+from Pipe import Pipe
+import collision
 # Common pipe colors
 red = (200, 0, 0)
 green = (0, 200, 0)
 blue = (100, 0, 200)
 
 # Initialization
-pygame.init()                                                                   
+pygame.init()
 background = pygame.image.load("res/forest.jpg")  # Loading the background.
-ball = pygame.image.load("res/bird.png")  # This loads the player.
-pygame.mouse.set_visible(False) 
+bird = pygame.image.load("res/bird.png")  # This loads the player.
+pygame.mouse.set_visible(False)
 DISPLAY_WIDTH = 1200
 DISPLAY_HEIGHT = 900
 gameDisplay = pygame.display.set_mode((DISPLAY_WIDTH, DISPLAY_HEIGHT))
 background = pygame.transform.scale(background, (DISPLAY_WIDTH, DISPLAY_HEIGHT))
 rect = background.get_rect()
-
 clock = pygame.time.Clock()
 FPS = 30 # Frames per second.
-
 pipes = []
 elapsed_time = 0
 prev_click = 0
-player = Bird(DISPLAY_HEIGHT, ball.get_rect()[3])
+player = Bird(DISPLAY_HEIGHT, bird.get_rect()[3])
 distance = 0
 # cid = 0 ...will be used a litlle later (change in distance)
 # Main loop:
@@ -62,12 +63,19 @@ while not game_exit:
     #cid = player.prev_position - player.position 
     #print(cid)
     #print(rad)
-    #ball = pygame.transform.rotate(ball, )
-    gameDisplay.blit(ball, (50, player.position))
+    #bird = pygame.transform.rotate(bird, )
 
+    gameDisplay.blit(bird, (50, player.position))
+    
     # Frame by frame updating.
     pygame.display.update()
     clock.tick(FPS)
+    
+    # Collion Detection.
+    if collision.collided([50, int(player.position), bird.get_rect()[2], bird.get_rect()[3]], pipes):
+        print "You Died!, Score = " + str(distance)
+        game_exit = True
+        time.sleep(1)
     
     elapsed_time += 1
 

@@ -18,25 +18,29 @@ class Pipe:
 
     def move(self):
         self.x_pos -= self.speed
- 
-        pygame.draw.rect(self.gameDisplay, self.color, (self.x_pos, 0, self.width, self.DISPLAY_HEIGHT-self.height - self.gap))
-        pygame.draw.rect(self.gameDisplay, self.glare, (self.x_pos + 10, 0, 50, self.DISPLAY_HEIGHT-self.height - self.gap))
-        pygame.draw.rect(self.gameDisplay, self.shadow, (self.x_pos + self.width - 20, 0, 20, self.DISPLAY_HEIGHT-self.height - self.gap))
-        pygame.draw.rect(self.gameDisplay, self.outline, (self.x_pos, 0, self.width, self.DISPLAY_HEIGHT-self.height - self.gap), 2)
         
-        pygame.draw.rect(self.gameDisplay, self.color, (self.x_pos - self.width / 6, self.DISPLAY_HEIGHT-self.height - self.gap - 65, self.width * 4 / 3, 65))
-        pygame.draw.rect(self.gameDisplay, self.glare, (self.x_pos - self.width / 6 + 10, self.DISPLAY_HEIGHT-self.height - self.gap - 65, 60, 65))
-        pygame.draw.rect(self.gameDisplay, self.shadow, (self.x_pos - self.width / 6 + self.width * 4 / 3 - 30 , self.DISPLAY_HEIGHT-self.height - self.gap - 65, 30, 65))
-        pygame.draw.rect(self.gameDisplay, self.outline, (self.x_pos - self.width / 6, self.DISPLAY_HEIGHT-self.height - self.gap - 65, self.width * 4 / 3, 65), 2)
- 
-        pygame.draw.rect(self.gameDisplay, self.color, (self.x_pos, self.DISPLAY_HEIGHT-self.height, self.width, self.height))
-        pygame.draw.rect(self.gameDisplay, self.glare, (self.x_pos + 10, self.DISPLAY_HEIGHT-self.height, 50, self.height))
-        pygame.draw.rect(self.gameDisplay, self.shadow, (self.x_pos + self.width - 20, self.DISPLAY_HEIGHT-self.height, 20, self.height))
-        pygame.draw.rect(self.gameDisplay, self.outline, (self.x_pos, self.DISPLAY_HEIGHT-self.height, self.width, self.height), 2)
- 
-        pygame.draw.rect(self.gameDisplay, self.color, (self.x_pos - self.width / 6, self.DISPLAY_HEIGHT-self.height, self.width * 4 / 3, 65))
-        pygame.draw.rect(self.gameDisplay, self.glare, (self.x_pos - self.width / 6 + 10, self.DISPLAY_HEIGHT-self.height, 60, 65))
-        pygame.draw.rect(self.gameDisplay, self.shadow, (self.x_pos - self.width / 6 + self.width * 4 / 3 - 30 , self.DISPLAY_HEIGHT-self.height, 30, 65))
-        pygame.draw.rect(self.gameDisplay, self.outline, (self.x_pos - self.width / 6, self.DISPLAY_HEIGHT-self.height, self.width * 4 / 3, 65), 2)
+        # Top main rectangle.
+        pygame.draw.rect(self.gameDisplay, self.color, (self.x_pos + self.width / 6, 0, self.width, self.height))
+        pygame.draw.rect(self.gameDisplay, self.glare, (self.x_pos + self.width / 6 + 10, 0, 50, self.height))
+        pygame.draw.rect(self.gameDisplay, self.shadow, (self.x_pos + self.width / 6 + self.width - 20, 0, 20, self.height))
+        pygame.draw.rect(self.gameDisplay, self.outline, (self.x_pos + self.width / 6, 0, self.width, self.height), 2)
+        
+        # Top style rectangle.
+        pygame.draw.rect(self.gameDisplay, self.color, (self.x_pos, self.height - 65, self.width * 4 / 3, 65))
+        pygame.draw.rect(self.gameDisplay, self.glare, (self.x_pos + 10, self.height - 65, 60, 65))
+        pygame.draw.rect(self.gameDisplay, self.shadow, (self.x_pos + self.width * 4 / 3 - 30 , self.height - 65, 30, 65))
+        pygame.draw.rect(self.gameDisplay, self.outline, (self.x_pos, self.height - 65, self.width * 4 / 3, 65), 2)
+        
+        # Bottm main rectangle.
+        pygame.draw.rect(self.gameDisplay, self.color, (self.x_pos + self.width / 6, self.height + self.gap, self.width, self.DISPLAY_HEIGHT - self.height))
+        pygame.draw.rect(self.gameDisplay, self.glare, (self.x_pos + self.width / 6 + 10, self.height + self.gap, 50, self.DISPLAY_HEIGHT - self.height))
+        pygame.draw.rect(self.gameDisplay, self.shadow, (self.x_pos + self.width / 6 + self.width - 20, self.height + self.gap, 20, self.DISPLAY_HEIGHT - self.height))
+        pygame.draw.rect(self.gameDisplay, self.outline, (self.x_pos + self.width / 6, self.height + self.gap, self.width, self.DISPLAY_HEIGHT - self.height), 2)
+        
+        # Bottom style rectangle.
+        pygame.draw.rect(self.gameDisplay, self.color, (self.x_pos, self.height + self.gap, self.width * 4 / 3, 65))
+        pygame.draw.rect(self.gameDisplay, self.glare, (self.x_pos + 10, self.height + self.gap, 60, 65))
+        pygame.draw.rect(self.gameDisplay, self.shadow, (self.x_pos + self.width * 4 / 3 - 30 , self.height + self.gap, 30, 65))
+        pygame.draw.rect(self.gameDisplay, self.outline, (self.x_pos, self.height + self.gap, self.width * 4 / 3, 65), 2)
 
     
