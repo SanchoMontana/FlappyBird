@@ -9,7 +9,7 @@ class Bird:
         self.time = 0
 
     def fall(self):
-        self.position += self.time - 10
+        self.position += 2 * (self.time - 10)
         if self.position > self.DISPLAY_HEIGHT - self.BIRD_HEIGHT:
             self.position = self.DISPLAY_HEIGHT - self.BIRD_HEIGHT
         if self.position < -self.BIRD_HEIGHT - 50:
