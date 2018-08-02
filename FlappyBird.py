@@ -1,6 +1,7 @@
 import pygame
 import math
 import time
+import random
 from Bird import Bird
 from Pipe import Pipe
 import collision
@@ -46,7 +47,7 @@ while not game_exit:
 
     # Pipe logic.
     if elapsed_time % (FPS*1.5) == 0:
-        pipes.insert(0, Pipe(gameDisplay, DISPLAY_HEIGHT, DISPLAY_WIDTH, 6, (20, 130, 200)))
+        pipes.insert(0, Pipe(gameDisplay, DISPLAY_HEIGHT, DISPLAY_WIDTH, 6, (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))))
     for pipe in pipes:
         pipe.move()
         if pipe.x_pos < -pipe.width:
