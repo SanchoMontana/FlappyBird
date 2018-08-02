@@ -45,7 +45,7 @@ while not game_exit:
 
     # Pipe logic.
     if elapsed_time % (FPS * 2) == 0:
-        pipes.insert(0, Pipe(gameDisplay, DISPLAY_HEIGHT, DISPLAY_WIDTH, 4, (20, 130, 200)))
+        pipes.insert(0, Pipe(gameDisplay, DISPLAY_HEIGHT, DISPLAY_WIDTH, 4, green))
     for pipe in pipes:
         pipe.move()
         if pipe.x_pos < -pipe.width:
